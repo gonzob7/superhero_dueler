@@ -40,12 +40,17 @@ class Hero:
         self.abilities.append(ability)
 
     def attack(self):
-        for ability in abilities:
-            ability.attack()
+        total = 0
+        for ability in self.abilities:
+            total += ability.max_damage
+            # ability.attack()
+        return total
 
 
 if __name__ == "__main__":
     ability = Ability("Great Debugging", 50)
+    another_ability = Ability("Smarty Pants", 90)
     hero = Hero("Grace Hopper", 200)
     hero.add_ability(ability)
-    print(hero.abilities)
+    hero.add_ability(another_ability)
+    print(hero.attack())
