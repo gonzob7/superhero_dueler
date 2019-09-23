@@ -1,4 +1,4 @@
-import dog
+from dog import Dog
 
 my_dog = Dog("Paris","German Shepard")
 
