@@ -10,10 +10,17 @@ class Ability:
         self.max_damage = max_damage
 
     def attack(self):
-        strength = random.randint(0, self.max_damage)
-        return strength
+        return(random.randint(0, self.max_damage))
 
 if __name__ == "__main__":
     ability = Ability("Debugging Ability", 20)
     print(ability.name)
     print(ability.attack())
+
+class Armor:
+    def __init__(self, name, max_block):
+        self.name = name
+        self.max_block = max_block
+
+    def block(self):
+        return(random.randint(0, self.max_block))
