@@ -49,6 +49,12 @@ class Hero:
     def add_armor(self, armor):
         self.armors.append(armor)
 
+    def defend(self, dmg_amt):
+        sum = 0
+        for armor in armors:
+            block()
+            sum += 1
+
 if __name__ == "__main__":
     ability = Ability("Great Debugging", 50)
     another_ability = Ability("Smarty Pants", 90)
