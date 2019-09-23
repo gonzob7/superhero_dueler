@@ -46,6 +46,8 @@ class Hero:
             # ability.attack()
         return total
 
+    def add_armor(self, armor):
+        self.armors.append(armor)
 
 if __name__ == "__main__":
     ability = Ability("Great Debugging", 50)
