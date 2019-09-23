@@ -52,7 +52,7 @@ class Hero:
     def defend(self, dmg_amt):
         sum = 0
         for armor in armors:
-            block()
+            armor.block()
             sum += 1
 
 if __name__ == "__main__":
