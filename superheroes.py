@@ -39,6 +39,11 @@ class Hero:
     def add_ability(self, ability):
         self.abilities.append(ability)
 
+    def attack(self):
+        for ability in abilities:
+            ability.attack()
+
+
 if __name__ == "__main__":
     ability = Ability("Great Debugging", 50)
     hero = Hero("Grace Hopper", 200)
