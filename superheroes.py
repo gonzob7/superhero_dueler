@@ -51,14 +51,20 @@ class Hero:
 
     def defend(self, dmg_amt):
         sum = 0
-        for armor in armors:
-            armor.block()
-            sum += 1
+        for armor in self.armors:
+            sum += armor.block()
+        return sum
+
+    def take_damage(self, damage):
+        defense_points = self.defend(damage)
+        damage_points = damage - defense_points
+
+        self.current_health -= damage_points
 
 if __name__ == "__main__":
-    ability = Ability("Great Debugging", 50)
-    another_ability = Ability("Smarty Pants", 90)
     hero = Hero("Grace Hopper", 200)
-    hero.add_ability(ability)
-    hero.add_ability(another_ability)
-    print(hero.attack())
+    shield = Armor("Shield", 20)
+    hero.add_armor(shield)
+    print(hero.armors[0])
+    hero.take_damage(10)
+    print(hero.current_health)
