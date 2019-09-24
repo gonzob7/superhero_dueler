@@ -49,17 +49,14 @@ class Hero:
     def add_armor(self, armor):
         self.armors.append(armor)
 
-    def defend(self, dmg_amt):
-        sum = 0
+    def defend(self, dmg_amt = 0):
         for armor in self.armors:
-            sum += armor.block()
-        return sum
+            dmg_amt += armor.block()
+        return dmg_amt
 
     def take_damage(self, damage):
-        defense_points = self.defend(damage)
-        damage_points = damage - defense_points
-
-        self.current_health -= damage_points
+        dmg = damage
+        self.current_health = self.current_health - dmg
 
     def is_alive(self):
         if(self.current_health > 0):
@@ -67,9 +64,28 @@ class Hero:
         elif(self.current_health <= 0):
             return False
 
+    def fight(self, opponent):
+        if(self.abilities or opponent.abilities):
+            while(self.is_alive() and opponent.is_alive()):
+                self.take_damage(opponent.attack)
+                opponent.take_damage(self.attack)
+            if(self.is_alive() == True and opponent.is_alive() == False):
+                print(f'{self.name} wins!')
+            elif(self.is_alive() == False and opponent.is_alive() == True):
+                print(f'{opponent.name} wins!')
+            else:
+                print("Draw!")
+
+
 if __name__ == "__main__":
-    hero = Hero("Grace Hopper", 200)
-    hero.take_damage(150)
-    print(hero.is_alive())
-    hero.take_damage(15000)
-    print(hero.is_alive())
+    hero1 = Hero("Wonder Woman",1000)
+    hero2 = Hero("Dumbledore",100)
+    ability1 = Ability("Super Speed", 300)
+    ability2 = Ability("Super Eyes", 130)
+    ability3 = Ability("Wizard Wand", 80)
+    ability4 = Ability("Wizard Beard", 20)
+    hero1.add_ability(ability1)
+    hero1.add_ability(ability2)
+    hero2.add_ability(ability3)
+    hero2.add_ability(ability4)
+    hero1.fight(hero2)
