@@ -26,15 +26,12 @@ class Armor:
         return(random.randint(0, self.max_block))
 
 class Hero:
-    def __init__(self, name, current_health, starting_health=100):
-
-
-        self.abilities = []
-        self.armors = []
-        self.current_health = current_health
+    def __init__(self, name, starting_health=100):
         self.name = name
         self.starting_health = starting_health
-        self.current_health = current_health
+        self.current_health = starting_health
+        self.abilities = []
+        self.armors = []
 
     def add_ability(self, ability):
         self.abilities.append(ability)
@@ -49,14 +46,14 @@ class Hero:
     def add_armor(self, armor):
         self.armors.append(armor)
 
-    def defend(self, dmg_amt = 0):
+    def defend(self):
+        total_block = 0
         for armor in self.armors:
-            dmg_amt += armor.block()
-        return dmg_amt
+            total_block += armor.block()
+        return total_block
 
     def take_damage(self, damage):
-        dmg = damage
-        self.current_health = self.current_health - dmg
+        self.current_health -= max(0, damage - self.defend())
 
     def is_alive(self):
         if(self.current_health > 0):
