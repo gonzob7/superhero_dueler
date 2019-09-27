@@ -23,12 +23,11 @@ class Armor:
         self.max_block = max_block
 
     def block(self):
-        return(random.randint(0, self.max_block))
+        return random.randint(0, self.max_block)
 
 class Hero:
     def __init__(self, name, starting_health=100):
         self.name = name
-        self.starting_health = starting_health
         self.current_health = starting_health
         self.abilities = []
         self.armors = []
@@ -39,7 +38,7 @@ class Hero:
     def attack(self):
         total = 0
         for ability in self.abilities:
-            total += ability.max_damage
+            total = total + ability.attack()
             # ability.attack()
         return total
 
@@ -47,31 +46,28 @@ class Hero:
         self.armors.append(armor)
 
     def defend(self):
-        total_block = 0
-        for armor in self.armors:
-            total_block += armor.block()
-        return total_block
+        total_defense = 0
+        if not len(self.armors) == 0:
+            for armor in self.armors:
+                total_defense += armor.block()
+        return total_defense
 
     def take_damage(self, damage):
-        self.current_health -= max(0, damage - self.defend())
+        health_change = self.defend() - damage
+        self.current_health += health_change
+
 
     def is_alive(self):
-        if(self.current_health > 0):
-            return True
-        elif(self.current_health <= 0):
-            return False
+        return self.current_health >= 0
 
     def fight(self, opponent):
-        if(self.abilities or opponent.abilities):
-            while(self.is_alive() and opponent.is_alive()):
-                self.take_damage(opponent.attack)
-                opponent.take_damage(self.attack)
-            if(self.is_alive() == True and opponent.is_alive() == False):
-                print(f'{self.name} wins!')
-            elif(self.is_alive() == False and opponent.is_alive() == True):
-                print(f'{opponent.name} wins!')
-            else:
-                print("Draw!")
+        while self.is_alive() and opponent.is_alive():
+            opponent.take_damage(self.attack())
+            self.take_damage(opponent.attack())
+            if self.is_alive() and not opponent.is_alive():
+                print(f'{self.name} won!')
+            elif not self.is_alive() and opponent.is_alive():
+                print(f'{opponent.name} won!')
 
 
 if __name__ == "__main__":
