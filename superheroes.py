@@ -10,7 +10,9 @@ class Ability:
         self.max_damage = max_damage
 
     def attack(self):
-        return(random.randint(0, self.max_damage))
+        max_damage = random.randint(0, self.max_damage)
+        return max_damage
+
 
 # if __name__ == "__main__":
 #     ability = Ability("Debugging Ability", 20)
@@ -74,7 +76,8 @@ class Weapon(Ability):
         between one half to the full attack power of the weapon.
         """
         # TODO: Use what you learned to complete this method.
-        half_attack = self.attack() // 2
+        max_damage = random.randint(self.max_damage//2, self.max_damage)
+        return max_damage
 
 class Team:
     def __init__(self, name):
