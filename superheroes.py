@@ -28,13 +28,13 @@ class Armor:
         return random.randint(0, self.max_block)
 
 class Hero:
-    def __init__(self, name, starting_health=100, deaths, kills):
+    def __init__(self, name, starting_health=100):
         self.name = name
         self.current_health = starting_health
         self.abilities = []
         self.armors = []
-        self.deaths = deaths
-        self.kills = kills
+        self.deaths = 0
+        self.kills = 0
 
     def add_ability(self, ability):
         self.abilities.append(ability)
@@ -75,7 +75,7 @@ class Hero:
                 self.add_kill(1)
             elif not self.is_alive() and opponent.is_alive():
                 print(f'{opponent.name} won!')
-                
+
 class Weapon(Ability):
     def attack(self):
         """  This method returns a random value
