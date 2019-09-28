@@ -88,6 +88,10 @@ class Team:
 
     def remove_hero(self, name):
         pass
+
+    def view_all_heroes(self):
+        pass
+
         
 if __name__ == "__main__":
     hero1 = Hero("Wonder Woman",1000)
