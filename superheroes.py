@@ -28,11 +28,13 @@ class Armor:
         return random.randint(0, self.max_block)
 
 class Hero:
-    def __init__(self, name, starting_health=100):
+    def __init__(self, name, starting_health=100, deaths, kills):
         self.name = name
         self.current_health = starting_health
         self.abilities = []
         self.armors = []
+        self.deaths = deaths
+        self.kills = kills
 
     def add_ability(self, ability):
         self.abilities.append(ability)
