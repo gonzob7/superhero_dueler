@@ -56,7 +56,6 @@ class Hero:
         health_change = self.defend() - damage
         self.current_health += health_change
 
-
     def is_alive(self):
         return self.current_health >= 0
 
