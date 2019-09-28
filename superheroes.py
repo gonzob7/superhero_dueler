@@ -83,20 +83,17 @@ class Team:
         heroes = []
 
     def add_hero(self, hero):
-        pass
-
+        self.heroes.append(hero)
 
     def remove_hero(self, name):
         for hero in self.heroes:
             if name == hero.name:
                 self.heroes.remove(hero)
-
         return 0
 
     def view_all_heroes(self):
         for hero in self.heroes:
             print(hero.name)
-        pass
 
 
 if __name__ == "__main__":
