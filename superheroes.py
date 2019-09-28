@@ -94,6 +94,8 @@ class Team:
         return 0
 
     def view_all_heroes(self):
+        for hero in self.heroes:
+            print(hero.name)
         pass
 
 
