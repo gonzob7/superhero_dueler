@@ -83,7 +83,7 @@ class Team:
     def __init__(self, name):
         # TODO: Implement this constructor by assigning the name and heroes, which should be an empty list
         self.name = name
-        heroes = []
+        self.heroes = []
 
     def add_hero(self, hero):
         self.heroes.append(hero)
