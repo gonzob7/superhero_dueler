@@ -76,8 +76,11 @@ class Hero:
             if self.is_alive() and not opponent.is_alive():
                 print(f'{self.name} won!')
                 self.add_kill(1)
+                opponent.add_deaths(1)
             elif not self.is_alive() and opponent.is_alive():
                 print(f'{opponent.name} won!')
+                opponent.add_kill(1)
+                self.add_deaths(1)
 
 class Weapon(Ability):
     def attack(self):
