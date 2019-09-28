@@ -52,6 +52,9 @@ class Hero:
     def add_kill(self, num_kills):
         self.kills += num_kills
 
+    def add_deaths(self, num_deaths):
+        self.deaths += num_deaths
+
     def defend(self):
         total_defense = 0
         if not len(self.armors) == 0:
