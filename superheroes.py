@@ -75,7 +75,13 @@ class Weapon(Ability):
         """
         # TODO: Use what you learned to complete this method.
         half_attack = self.attack() // 2
-           
+
+class Team:
+    def __init__(self, name):
+        # TODO: Implement this constructor by assigning the name and heroes, which should be an empty list
+        self.name = name
+        heroes = []
+
 
 if __name__ == "__main__":
     hero1 = Hero("Wonder Woman",1000)
