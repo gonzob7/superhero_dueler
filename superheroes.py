@@ -97,6 +97,7 @@ class Team:
         self.name = name
         self.heroes = []
 
+
     def add_hero(self, hero):
         self.heroes.append(hero)
 
@@ -112,6 +113,22 @@ class Team:
 
     def attack(self, other_team):
         ''' Battle each team against each other.'''
+
+        remaining_heroes = []
+        remaining_opponents = []
+
+        for hero in self.heroes:
+            if hero.is_alive():
+                remaining_heroes.append(self.heroes[hero])
+
+        for opponent in other_team.heroes:
+            if opponent.is_alive():
+                remaining_opponents.append(opponents.heroes[opponent])
+
+        while len(remaining_heroes) > 0 and len(remaining_opponents) > 0:
+            random_hero = self.heroes[random.choice(remaining_heroes)]
+            random_opponent = opponents.heroes[random.choice(remaining_opponents)]
+            random_hero.fight(random_opponent)
         # TODO: Randomly select a living hero from each team and have
         # them fight until one or both teams have no surviving heroes.
         # Hint: Use the fight method in the Hero class.
