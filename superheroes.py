@@ -85,6 +85,10 @@ class Team:
     def add_hero(self, hero):
         pass
 
+
+    def remove_hero(self, name):
+        pass
+        
 if __name__ == "__main__":
     hero1 = Hero("Wonder Woman",1000)
     hero2 = Hero("Dumbledore",100)
