@@ -68,6 +68,14 @@ class Hero:
             elif not self.is_alive() and opponent.is_alive():
                 print(f'{opponent.name} won!')
 
+class Weapon(Ability):
+    def attack(self):
+        """  This method returns a random value
+        between one half to the full attack power of the weapon.
+        """
+        # TODO: Use what you learned to complete this method.
+        half_attack = self.attack() // 2
+           
 
 if __name__ == "__main__":
     hero1 = Hero("Wonder Woman",1000)
