@@ -31,6 +31,7 @@ class Hero:
     def __init__(self, name, starting_health=100):
         self.name = name
         self.current_health = starting_health
+        self.starting_health = starting_health
         self.abilities = []
         self.armors = []
         self.deaths = 0
@@ -119,42 +120,44 @@ class Team:
 
         for hero in self.heroes:
             if hero.is_alive():
-                remaining_heroes.append(self.heroes[hero])
+                remaining_heroes.append(self.heroes.index(hero))
 
         for opponent in other_team.heroes:
             if opponent.is_alive():
-                remaining_opponents.append(opponents.heroes[opponent])
+                remaining_opponents.append(other_team.heroes.index(opponent))
 
         while len(remaining_heroes) > 0 and len(remaining_opponents) > 0:
             random_hero = self.heroes[random.choice(remaining_heroes)]
-            random_opponent = opponents.heroes[random.choice(remaining_opponents)]
+            random_opponent = other_team.heroes[random.choice(remaining_opponents)]
             random_hero.fight(random_opponent)
 
         for hero in self.heroes:
             if hero.is_alive() == False:
                 remaining_heroes.pop(self.heroes[hero])
 
-        for opponent in opponents.heroes:
+        for opponent in other_team.heroes:
             if opponent.is_alive() == False:
-                remaining_opponents.pop(opponents.heroes[opponent])
+                remaining_opponents.pop(other_team.heroes[opponent])
 
         if len(remaining_heroes) > 0:
             return f"{self.name} won!"
         elif len(remaining_opponents) > 0:
-            return f"{opponents.name} won!"
+            return f"{other_team.name} won!"
         elif len(remaining_heroes) == len(remaining_opponents):
             return "Draw!"
+
 
         # TODO: Randomly select a living hero from each team and have
         # them fight until one or both teams have no surviving heroes.
         # Hint: Use the fight method in the Hero class.
-        pass
 
     def revive_heroes(self, health=100):
+
         ''' Reset all heroes health to starting_health'''
         # TODO: This method should reset all heroes health to their
         # original starting value.
-        pass
+        for hero in self.heroes:
+            hero.current_health = 100
 
     def stats(self):
         '''Print team statistics'''
@@ -162,7 +165,8 @@ class Team:
         # member of the team to the screen.
         # This data must be output to the console.
         # Hint: Use the information stored in each hero.
-        pass
+        for hero in self.heroes:
+            print(f"{hero.name}; Kills - {hero.kills}, Deaths - {hero.deaths}")
 
 
 if __name__ == "__main__":
