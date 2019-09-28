@@ -87,12 +87,16 @@ class Team:
 
 
     def remove_hero(self, name):
-        pass
+        for hero in self.heroes:
+            if name == hero.name:
+                self.heroes.remove(hero)
+
+        return 0
 
     def view_all_heroes(self):
         pass
 
-        
+
 if __name__ == "__main__":
     hero1 = Hero("Wonder Woman",1000)
     hero2 = Hero("Dumbledore",100)
