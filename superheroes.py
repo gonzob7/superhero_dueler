@@ -82,6 +82,8 @@ class Team:
         self.name = name
         heroes = []
 
+    def add_hero(self, hero):
+        pass
 
 if __name__ == "__main__":
     hero1 = Hero("Wonder Woman",1000)
