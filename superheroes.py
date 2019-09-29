@@ -83,6 +83,14 @@ class Hero:
                 opponent.add_kill(1)
                 self.add_deaths(1)
 
+        def add_weapon(self, weapon):
+        '''Add weapon to self.abilities'''
+        # TODO: This method will append the weapon object passed in as an
+        # argument to self.abilities.
+        # This means that self.abilities will be a list of
+        # abilities and weapons.
+        pass
+        
 class Weapon(Ability):
     def attack(self):
         """  This method returns a random value
