@@ -198,6 +198,19 @@ class Arena:
         weapon_attack = int(input("Enter weapon max attack (Ints only): "))
         return Weapon(weapon_input, weapon_attack)
 
+    def create_armor(self):
+        '''Prompt user for Armor information
+          return Armor with values from user input.
+        '''
+        # TODO:This method will allow a user to create a piece of armor.
+        #  Prompt the user for the necessary information to create a new armor
+        #  object.
+        #
+        #  return the new armor object with values set by user.
+        armor_input = input("Enter armor name: ")
+        armor_max_block_input = input("Enter armor max block: ")
+        return Armor(armor_input, armor_max_block_input)
+
 if __name__ == "__main__":
     hero1 = Hero("Wonder Woman",1000)
     hero2 = Hero("Dumbledore",100)
