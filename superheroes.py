@@ -84,13 +84,9 @@ class Hero:
                 self.add_deaths(1)
 
         def add_weapon(self, weapon):
-        '''Add weapon to self.abilities'''
-        # TODO: This method will append the weapon object passed in as an
-        # argument to self.abilities.
-        # This means that self.abilities will be a list of
-        # abilities and weapons.
+            self.abilities.append(weapon)
         pass
-        
+
 class Weapon(Ability):
     def attack(self):
         """  This method returns a random value
@@ -169,6 +165,16 @@ class Team:
         for hero in self.heroes:
             print(f"{hero.name}; Kills - {hero.kills}, Deaths - {hero.deaths}")
 
+class Arena:
+    def __init__(self):
+        '''Instantiate properties
+            team_one: None
+            team_two: None
+        '''
+        self.team_one = None
+        self.team_two = None
+        # TODO: create instance variables named team_one and team_two that
+        # will hold our teams.
 
 if __name__ == "__main__":
     hero1 = Hero("Wonder Woman",1000)
