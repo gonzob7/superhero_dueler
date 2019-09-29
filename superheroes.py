@@ -176,6 +176,17 @@ class Arena:
         # TODO: create instance variables named team_one and team_two that
         # will hold our teams.
 
+    def create_ability(self):
+        '''Prompt for Ability information.
+            return Ability with values from user Input
+        '''
+        # TODO: This method will allow a user to create an ability.
+        # Prompt the user for the necessary information to create a new ability object.
+        # return the new ability object.
+        ability_input = input("Enter ability name: ")
+        max_strength_input = input("Enter maximum strength for ability: ")
+        return Ability(ability_input, max_strength_input)
+
 if __name__ == "__main__":
     hero1 = Hero("Wonder Woman",1000)
     hero2 = Hero("Dumbledore",100)
