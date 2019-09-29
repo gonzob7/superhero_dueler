@@ -187,6 +187,17 @@ class Arena:
         max_strength_input = input("Enter maximum strength for ability: ")
         return Ability(ability_input, max_strength_input)
 
+    def create_weapon(self):
+        '''Prompt user for Weapon information
+            return Weapon with values from user input.
+        '''
+        # TODO: This method will allow a user to create a weapon.
+        # Prompt the user for the necessary information to create a new weapon object.
+        # return the new weapon object.
+        weapon_input = input("Enter weapon name: ")
+        weapon_attack = int(input("Enter weapon max attack (Ints only): "))
+        return Weapon(weapon_input, weapon_attack)
+
 if __name__ == "__main__":
     hero1 = Hero("Wonder Woman",1000)
     hero2 = Hero("Dumbledore",100)
