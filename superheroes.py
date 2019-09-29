@@ -68,7 +68,7 @@ class Hero:
         self.current_health += health_change
 
     def is_alive(self):
-        return self.current_health >= 0
+        return self.current_health > 0
 
     def fight(self, opponent):
         while self.is_alive() and opponent.is_alive():
@@ -104,52 +104,45 @@ class Team:
 
     def remove_hero(self, name):
         for hero in self.heroes:
-            if name == hero.name:
+            if hero.name == name:
                 self.heroes.remove(hero)
         return 0
+
+
+    def is_team_alive(self):
+        for hero in self.heroes:
+            if hero.is_alive():
+                return True
+        else:
+            return False
+
 
     def view_all_heroes(self):
         for hero in self.heroes:
             print(hero.name)
 
+    def get_r_fighter(self):
+        if self.is_team_alive() == False:
+            return 0
+        else:
+            fighter = random.choice(self.heroes)
+            if fighter.is_alive() == False:
+                fighter = self.get_r_fighter()
+            return fighter
+
+
     def attack(self, other_team):
-        ''' Battle each team against each other.'''
 
-        remaining_heroes = []
-        remaining_opponents = []
+        state = "alive"
 
-        for hero in self.heroes:
-            if hero.is_alive():
-                remaining_heroes.append(self.heroes.index(hero))
-
-        for opponent in other_team.heroes:
-            if opponent.is_alive():
-                remaining_opponents.append(other_team.heroes.index(opponent))
-
-        while len(remaining_heroes) > 0 and len(remaining_opponents) > 0:
-            random_hero = self.heroes[random.choice(remaining_heroes)]
-            random_opponent = other_team.heroes[random.choice(remaining_opponents)]
-            random_hero.fight(random_opponent)
-
-        for hero in self.heroes:
-            if hero.is_alive() == False:
-                remaining_heroes.pop(self.heroes[hero])
-
-        for opponent in other_team.heroes:
-            if opponent.is_alive() == False:
-                remaining_opponents.pop(other_team.heroes[opponent])
-
-        if len(remaining_heroes) > 0:
-            return f"{self.name} won!"
-        elif len(remaining_opponents) > 0:
-            return f"{other_team.name} won!"
-        elif len(remaining_heroes) == len(remaining_opponents):
-            return "Draw!"
-
-
-        # TODO: Randomly select a living hero from each team and have
-        # them fight until one or both teams have no surviving heroes.
-        # Hint: Use the fight method in the Hero class.
+        while state == "alive":
+            self_fighter = self.get_r_fighter()
+            other_team_fighter = other_team.get_r_fighter()
+            self_fighter.fight(other_team_fighter)
+            if self.is_team_alive() or self_fighter == "alive":
+                state = "fighter team died"
+            elif other_team.is_team_alive() or other_team_fighter == "alive":
+                state = "opponent team dead"
 
     def revive_heroes(self, health=100):
 
