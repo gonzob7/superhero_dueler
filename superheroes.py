@@ -211,6 +211,38 @@ class Arena:
         armor_max_block_input = input("Enter armor max block: ")
         return Armor(armor_input, armor_max_block_input)
 
+    def create_hero(self):
+        '''Prompt user for Hero information
+          return Hero with values from user input.
+        '''
+        # TODO: This method should allow a user to create a hero.
+        # User should be able to specify if they want armors, weapons, and
+        # abilities.
+        # Call the methods you made above and use the return values to build
+        # your hero.
+        #
+        # return the new hero object
+        hero_name_input = input("Input hero name: ")
+        hero_armor_option_input = input("Do you want armor? (Y/N): ")
+        if hero_armor_option_input == "Y":
+            create_armor()
+        else:
+            pass
+
+        hero_weapon_option_input = input("Do you want a weapon? (Y/N): ")
+        if hero_weapon_option_input == "Y":
+            create_weapon()
+        else:
+            pass
+
+        hero_weapon_option_ability = input("Do you want an ability? (Y/N): ")
+        if hero_weapon_option_input == "Y":
+            create_ability()
+        else:
+            pass
+
+        return hero
+
 if __name__ == "__main__":
     hero1 = Hero("Wonder Woman",1000)
     hero2 = Hero("Dumbledore",100)
