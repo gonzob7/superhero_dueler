@@ -276,6 +276,13 @@ class Arena:
             team_two.add_hero(hero)
         self.team_two = team_two
 
+    def team_battle(self):
+        '''Battle team_one and team_two together.'''
+        # TODO: This method should battle the teams together.
+        # Call the attack method that exists in your team objects
+        # for that battle functionality.
+        self.team_one.attack(self.team_two)
+
 if __name__ == "__main__":
     hero1 = Hero("Wonder Woman",1000)
     hero2 = Hero("Dumbledore",100)
