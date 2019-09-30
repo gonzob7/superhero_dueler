@@ -283,6 +283,26 @@ class Arena:
         # for that battle functionality.
         self.team_one.attack(self.team_two)
 
+    def check_team_status(self, team_name):
+        team_deaths = 0
+        for hero in team_name:
+            if hero.current_health = 0:
+                team_deaths += 1
+            if team_deaths == len(team_name):
+                return True
+            else:
+                return False
+
+    def show_stats(self):
+        '''Prints team statistics to terminal.'''
+        # TODO: This method should print out battle statistics
+        # including each team's average kill/death ratio.
+        # Required Stats:
+        #     Declare winning team
+        #     Show both teams average kill/death ratio.
+        #     Show surviving heroes.
+
+
 if __name__ == "__main__":
     hero1 = Hero("Wonder Woman",1000)
     hero2 = Hero("Dumbledore",100)
