@@ -143,18 +143,17 @@ class Team:
             hero.current_health = 100
 
     def stats(self):
-        team_kills = 0
-        team_deaths = 0
+        kdr = 0
+        total_kills = 0
+        total_deaths = 0
         for hero in self.heroes:
-            team_kills += hero.kills
-            team_deaths += hero.deaths
-
-            kd = round(hero.kills / hero.deaths,
-                       2) if hero.deaths > 0 else hero.kills
-            print(f'{hero.name} has {hero.kills} kills and {hero.deaths} deaths')
-            print(f'{hero.name} has a KD of: {kd}')
-
-        return round(team_kills / team_deaths, 2) if team_deaths > 0 else team_kills
+            total_kills += hero.kills
+            total_deaths += hero.deaths
+        if total_deaths == 0:
+            kdr = total_kills
+        else:
+            kdr = total_kills/total_deaths
+        return kdr
 
 class Arena:
     def __init__(self):
@@ -173,29 +172,29 @@ class Arena:
     def create_hero(self):
         hero_name_input = input("Enter hero name: ")
         hero_health_input = int(input("Enter hero health: "))
-        u_hero = Hero(hero_name_input, int(hero_health_input))
+        current_hero = Hero(hero_name_input, int(hero_health_input))
 
         if input("Do you want armor? (Y/N): ").upper() == "Y":
-            armor_name = input("Input armor name ").lower()
-            armor_points = int(input("Input armor value "))
-            u_hero.add_armor(self.create_armor(armor_name, armor_points))
+            armor_name = input("Enter armor name: ").lower()
+            armor_points = int(input("Enter armor max block: "))
+            current_hero.add_armor(self.create_armor(armor_name, armor_points))
 
         hero_weapon_option_input = input("Do you want a weapon? (Y/N): ").upper()
         if hero_weapon_option_input == "Y":
-            weapon_name = input("Input weapon name ").lower()
-            weapon_damage = int(input("Input weapon damage "))
-            u_hero.add_weapon(self.create_weapon(weapon_name, weapon_damage))
+            weapon_name = input("Enter weapon name: ").lower()
+            weapon_damage = int(input("Enter weapon max damage: "))
+            current_hero.add_weapon(self.create_weapon(weapon_name, weapon_damage))
 
         hero_ability_option_input = input("Do you want an ability? (Y/N): ").upper()
         if hero_ability_option_input == "Y":
-            ability_name = input("Input ability name ").lower()
-            ability_damage = int(input("Input ability damage "))
-            u_hero.add_ability(self.create_ability(ability_name, ability_damage))
+            ability_name = input("Enter ability name: ").lower()
+            ability_damage = int(input("Enter ability max damage: "))
+            current_hero.add_ability(self.create_ability(ability_name, ability_damage))
 
-        return u_hero
+        return current_hero
 
     def build_team_one(self):
-        team_name = input("Enter first team name: ")
+        team_name = input("\nEnter first team name: ")
         self.team_one = Team(team_name)
 
         hero_amount_input = int(input("How many heroes?: "))
@@ -203,7 +202,7 @@ class Arena:
             self.team_one.add_hero(self.create_hero())
 
     def build_team_two(self):
-        team_name = input("Enter second team name: ")
+        team_name = input("\nEnter second team name: ")
         self.team_two = Team(team_name)
 
         hero_amount_input = int(input("How many heroes?: "))
@@ -214,26 +213,14 @@ class Arena:
         self.team_one.attack(self.team_two)
 
     def show_stats(self):
-        print('=' * 24)
-        print('TEAM ONE STATISTICS: \n')
-        print(f'\nTeam one\'s stats: {self.team_one.stats()}\n')
-
-        print('=' * 24)
-
-        print('TEAM TWO STATISTICS: \n')
-        print(f'\nTeam two\'s stats: {self.team_two.stats()}\n')
-        print('=' * 24)
-
-        print('FIGHT OUTCOME: \n')
-        if self.team_one.team_alive():
-            hero_list = [hero.name for hero in self.team_one.hero_list]
-            print(
-                f'Team 1 is victorious!\nChampions: {", ".join(hero_list)}')
-        else:
-            hero_list = [hero.name for hero in self.team_two.hero_list]
-            print(
-                f'Team 2 is victorious!\nChampions: {", ".join(hero_list)}')
-        print('=' * 24)
+        stat_header = """
+        ===========
+        || STATS ||
+        ===========
+        """
+        print(stat_header)
+        print(f'Team One KDR: {self.team_one.stats()}')
+        print(f'Team Two KDR: {self.team_two.stats()} \n')
 
 if __name__ == "__main__":
     game_is_running = True
